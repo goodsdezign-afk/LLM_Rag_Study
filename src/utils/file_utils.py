@@ -9,3 +9,13 @@ def resolve_env_vars(obj):
         env_var = obj[2:-1]
         return os.getenv(env_var)  
     return obj
+
+
+def add_file(file_name):
+    print(file_name)
+    
+def get_file_list():
+    print('files')
+    
+def initialize_files():
+    print('initial_file')
