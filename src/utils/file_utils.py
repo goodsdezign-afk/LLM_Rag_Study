@@ -7,5 +7,5 @@ def resolve_env_vars(obj):
         return [resolve_env_vars(v) for v in obj]
     elif isinstance(obj, str) and obj.startswith("${") and obj.endswith("}"):
         env_var = obj[2:-1]
-        return os.getenv(env_var)  # 실제 환경 변수 값으로 치환
+        return os.getenv(env_var)  
     return obj
