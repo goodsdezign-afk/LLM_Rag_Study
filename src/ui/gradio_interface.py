@@ -30,7 +30,7 @@ def create_interface():
                 chatbot = gr.Chatbot(
                     [],
                     elem_id="chatbot",
-                    avatar_images=("/data/asset/images/user.png", "/data/asset/images/chatbot.png"),
+                    avatar_images=("../../data/asset/images/user.png", "../../data/asset/images/chatbot.png"),
                     bubble_full_width=False,
                     height=400
                 )
@@ -38,10 +38,10 @@ def create_interface():
                 clear = gr.ClearButton([msg, chatbot])
  
             with gr.Column(scale=1):
-                model_dropdown = gr.Dropdown(choices=CONFIG['llm_models'],
-                                             value=CONFIG['default_model'],
+                model_dropdown = gr.Dropdown(choices=CONFIG['model_name'],
+                                             value=CONFIG['model_name'],
                                              label="Select LLM Model")
-                model_status = gr.Markdown("Current Model: " + CONFIG['default_model'])
+                model_status = gr.Markdown("Current Model: " + CONFIG['model_name'])
  
                 with gr.Tabs():
                     with gr.TabItem("Current Files"):
@@ -61,7 +61,7 @@ def create_interface():
  
         def handle_file_upload(file):
             status, _, file_list = add_file(file)
-            return status, file_list, None  # None을 반환하여 file_upload를 초기화
+            return status, file_list, None  
  
         msg.submit(respond, [msg, chatbot], [msg, chatbot, file_output])
         file_upload.upload(handle_file_upload, file_upload, [upload_status, file_output, file_upload])
